@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Home page</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+	<script type="text/javascript" src="{% static 'js/myjs.js' %}"></script>
+	<style>
+		#id_custom_input {display: none;}
+	</style>
+
+</head>
+
+<body>
+	<h1>CODETABLE</h1>
+	<form method="POST">
+		{{ input.code_input }}<br>
+		{{ input.language }}<br><br>
+		{{ input.action }}
+		{% csrf_token %}
+		<input type="submit" class='btn btn-primary' value="Run Code" onclick="submit_request()">
+		<input type="button" class='btn btn-danger' value="Clear" onclick="clearcode()">	
+		<input type="submit" class='btn btn-primary' value="Save" onclick="save_request()">
+		<input type="file" class='btn btn-primary btn-sm' value="Clear" onchange='readText(this)' />
+		<button class='btn btn-primary' onclick="saveTextAsFile(id_code_input.value)">Download</button>
+		<br><br>
+		<button type="button" class="btn btn-primary btn-sm" onclick="show_custom()" data-toggle="button" aria-pressed="false">Custom Input</button><br>
+		{{ input.custom_input }}<br>
+	</form>
+
+	
+
+	<form readonly>
+		{{ output.as_p }}
+	</form>
+</body>
+</html>
